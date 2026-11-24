@@ -16,7 +16,7 @@ pipeline {
             steps{
                 echo 'Deteninendo contenedores...'
                 sh '''
-                    docker-compose -p ${COMPOSE_PROJECT_NAME} -f ${COMPOSE_FILE} --env-file ${ENV_FILE} down || true
+                    docker compose -p ${COMPOSE_PROJECT_NAME} -f ${COMPOSE_FILE} --env-file ${ENV_FILE} down || true
                 '''
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             steps{
                 echo 'Generando nuevas imagenes...'
                 sh '''
-                    docker-compose -p ${COMPOSE_PROJECT_NAME} -f ${COMPOSE_FILE} --env-file ${ENV_FILE} build --no-cache
+                    docker compose -p ${COMPOSE_PROJECT_NAME} -f ${COMPOSE_FILE} --env-file ${ENV_FILE} build --no-cache
                 '''
             }
         }
@@ -52,7 +52,7 @@ pipeline {
             steps{
                 echo 'Levantando contenedores...'
                 sh '''
-                    docker-compose -p ${COMPOSE_PROJECT_NAME} -f ${COMPOSE_FILE} --env-file ${ENV_FILE} up -d 
+                    docker compose -p ${COMPOSE_PROJECT_NAME} -f ${COMPOSE_FILE} --env-file ${ENV_FILE} up -d 
                 '''
             }
         }
